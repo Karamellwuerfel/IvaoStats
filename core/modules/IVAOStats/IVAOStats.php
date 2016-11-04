@@ -23,15 +23,37 @@ class IVAOStats extends CodonModule
 			$servers = $matches[1];
 			$airports = $matches[2];
 
+			//search for clients, servers and airports
 			$clients = str_replace("CONNECTED CLIENTS = ", "", $clients);
 			$servers = str_replace("CONNECTED SERVERS = ", "", $servers);
 			$airports = str_replace("CONNECTED AIRPORTS = ", "", $airports);
 
-
+			//search for observers
+			$obs = array("observer");  
+			$string = file_get_contents('http://api.ivao.aero/getdata/whazzup/whazzup.txt');
+			 
+			foreach($obs as $word)  
+			{  
+				$observers = substr_count(strtolower($string), $word);  
+			}  
 			
-            $this->set('clients', $clients);
+			//search for pilots
+			$pilo = array("pilot");  
+			foreach($pilo as $word)  
+			{  
+				$pilots = substr_count(strtolower($string), $word);  
+			}
+			
+			//calculate controllers out of clients and pilots // ISSUE not right number! // 11/04/2016 Philipp Dalheimer
+			$controllers = $clients - $pilots;
+			
+
+			$this->set('clients', $clients);
             $this->set('servers', $servers);
             $this->set('airports', $airports);
+			$this->set('observers', $observers);
+			$this->set('pilots', $pilots);
+			$this->set('controllers', $controllers);
 			
             $this->show('/ivaostats/ivaostats.php');
 			
