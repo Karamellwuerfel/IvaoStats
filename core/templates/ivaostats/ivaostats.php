@@ -1,4 +1,4 @@
-<div style="padding: 30px;">
+<div id="data" style="padding: 30px;">
 
 	<h2 style="padding-bottom: 10px;">IVAO Online Users</h2>
 	<br>
@@ -40,6 +40,14 @@
 		
 	</div>
 <div>
+
+<!-- To refresh the content -->
+<script type="text/javascript">
+	function liveflight(){
+	  $("#data").load(location.href + " #data>*", "");
+	}
+	setInterval(function(){liveflight()}, 10000);
+</script>
 
 <style>
 	
