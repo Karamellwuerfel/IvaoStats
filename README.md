@@ -1,6 +1,8 @@
 # IvaoStats
 A phpvms module to show the IVAO Stats
 
+[![GitHub issues](https://img.shields.io/github/issues/Karamellwuerfel/IvaoStats.svg)](https://github.com/Karamellwuerfel/IvaoStats/issues)
+
 ## Installation
 
 1. copy the core/modules/IVAOStats folder into yoursite/core/modules/ folder
